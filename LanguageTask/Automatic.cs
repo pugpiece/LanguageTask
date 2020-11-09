@@ -17,16 +17,16 @@ namespace LanguageTask
 
         public Automatic() //при создании экземпляра класса все автоматы считываются с JSON файлов
         {
-            string jsonString = File.ReadAllText(@"..\\..\\..\\int.json");
+            string jsonString = File.ReadAllText(@"..\\..\\..\\Trees\int.json");
             intTree = JsonSerializer.Deserialize<Tree>(jsonString);
 
-            jsonString = File.ReadAllText(@"..\\..\\..\\value.json");
+            jsonString = File.ReadAllText(@"..\\..\\..\\Trees\value.json");
             valueTree = JsonSerializer.Deserialize<Tree>(jsonString);
 
-            jsonString = File.ReadAllText(@"..\\..\\..\\name.json");
+            jsonString = File.ReadAllText(@"..\\..\\..\\Trees\name.json");
             nameTree = JsonSerializer.Deserialize<Tree>(jsonString);
 
-            jsonString = File.ReadAllText(@"..\\..\\..\\symbol.json");
+            jsonString = File.ReadAllText(@"..\\..\\..\\Trees\symbol.json");
             symbolTree = JsonSerializer.Deserialize<Tree>(jsonString);
         }
 
