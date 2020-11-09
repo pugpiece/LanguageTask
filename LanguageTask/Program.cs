@@ -37,6 +37,7 @@ namespace LanguageTask
 
         static void Main(string[] args)
         {
+            Task1();
             Task2();
         }
     }
