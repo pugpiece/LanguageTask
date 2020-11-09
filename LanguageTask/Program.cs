@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace LanguageTask
 {
-    class Program
+    class Program 
     {
-        public static void Task1()
+        public static void Task1() // первое задание, проверяет содержит ли строчка слово int
         {
             Automatic automatic = new Automatic();
             Console.WriteLine("Введите имя переменной");
@@ -20,7 +20,7 @@ namespace LanguageTask
             Console.WriteLine();
         }
 
-        public static void Task2()
+        public static void Task2() // второе задание, проверяет какие лексемы содержит строчка (с использованием приоритетов)
         {
             Automatic automatic = new Automatic();
             Console.WriteLine("Введите входную строку");

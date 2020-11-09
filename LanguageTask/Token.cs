@@ -1,6 +1,6 @@
 ﻿namespace LanguageTask
 {
-    class Token
+    class Token //класс токен, элемент этого класса возвращает автомат по завершению работы
     {
         public bool isGrammar;
         public int lastNumber;

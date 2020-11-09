@@ -4,10 +4,12 @@ namespace LanguageTask
 {
     class Tree
     {
-        public int Q { get; set; }
-        public string[][] map { get; set; }
-        public int priority { get; set; }
-        public string name { get; set; }
+        public int Q { get; set; } // сколько состояний q есть у данного автомата
+        public string[][] map { get; set; } // "карта" Q на Q, по которой можно понять, из какого состояния
+                                            // q в какое можно попасть и как (строчка хранит все символы, по
+                                            // которым можно совершить переход)
+        public int priority { get; set; } // приоритет автомата
+        public string name { get; set; } // название автомата, нужно чтобы выводить его во втором задании
 
         public Tree()
         {
@@ -23,7 +25,8 @@ namespace LanguageTask
             name = nameNew;
         }
 
-        public Token Try(string input, int start)
+        public Token Try(string input, int start) // функция, которая проверяет подходит ли входная строка
+                                                  // (с уточнением начала) по автомату
         {
             Token token = new Token();
             int q = 0;
@@ -31,7 +34,7 @@ namespace LanguageTask
             {
                 for (int k = 0; k < Q; k++)
                 {
-                    if (map[q][k].Contains(input[i]))
+                    if (map[q][k].Contains(input[i])) //если текущий символ есть в списке переходов из q в k
                     {
                         q = k;
                         token.lastNumber++;

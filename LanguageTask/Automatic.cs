@@ -5,17 +5,17 @@ using System.Text.Json;
 
 namespace LanguageTask
 {
-    class Automatic
+    class Automatic //Класс хранящий в себе все автоматы
     {
-        private Tree intTree;
+        private Tree intTree; //автомат для слова int
 
-        private Tree valueTree;
+        private Tree valueTree; //автомат для целочисленных значений
 
-        private Tree nameTree;
+        private Tree nameTree; //автомат для имен переменных
 
-        private Tree symbolTree;
+        private Tree symbolTree; // автомат для символов, например ";", "-", "+", "=" и так далее
 
-        public Automatic()
+        public Automatic() //при создании экземпляра класса все автоматы считываются с JSON файлов
         {
             string jsonString = File.ReadAllText(@"..\\..\\..\\int.json");
             intTree = JsonSerializer.Deserialize<Tree>(jsonString);
@@ -29,6 +29,8 @@ namespace LanguageTask
             jsonString = File.ReadAllText(@"..\\..\\..\\symbol.json");
             symbolTree = JsonSerializer.Deserialize<Tree>(jsonString);
         }
+
+        // функции по проверке строчки через автомат
         public Token IsInt(string input, int start)
         {
             return intTree.Try(input, start);
@@ -44,6 +46,7 @@ namespace LanguageTask
             return nameTree.Try(input, start);
         }
 
+        //функция по проверке строчки на все автоматы сразу, возвращает набор пар <название лексемы, сама лексема>
         public List<KeyValuePair<string, string>> IsCorrect(string input)
         {
             List<KeyValuePair<string, string>> result = new List<KeyValuePair<string, string>>();
