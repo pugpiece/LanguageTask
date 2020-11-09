@@ -1,0 +1,10 @@
+{
+  
+  "Q": 2,
+  "map": [
+    [ "", "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" ],
+    [ "", "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890" ]
+  ],
+  "priority": 0,
+  "name": "name"
+}
