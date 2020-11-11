@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageTask", "LanguageTask\LanguageTask.csproj", "{DD200A76-B5F8-474B-A569-A6E96FEB4AEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageTask", "LanguageTask\LanguageTask.csproj", "{DD200A76-B5F8-474B-A569-A6E96FEB4AEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageTaskTest", "LanguageTaskTest\LanguageTaskTest.csproj", "{CFF069D4-9B06-4336-B622-10C4731CD17C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trees", "Trees", "{8DE054F3-4A8F-4B96-8E01-4E7727B440DC}"
+	ProjectSection(SolutionItems) = preProject
+		Trees\int.json = Trees\int.json
+		Trees\name.json = Trees\name.json
+		Trees\symbol.json = Trees\symbol.json
+		Trees\value.json = Trees\value.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,10 @@ Global
 		{DD200A76-B5F8-474B-A569-A6E96FEB4AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD200A76-B5F8-474B-A569-A6E96FEB4AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD200A76-B5F8-474B-A569-A6E96FEB4AEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF069D4-9B06-4336-B622-10C4731CD17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF069D4-9B06-4336-B622-10C4731CD17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF069D4-9B06-4336-B622-10C4731CD17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF069D4-9B06-4336-B622-10C4731CD17C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

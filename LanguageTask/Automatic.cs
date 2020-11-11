@@ -5,52 +5,30 @@ using System.Text.Json;
 
 namespace LanguageTask
 {
-    class Automatic //Класс хранящий в себе все автоматы
+    public class Automatic //Класс хранящий в себе все автоматы
     {
-        private Tree intTree; //автомат для слова int
-
-        private Tree valueTree; //автомат для целочисленных значений
-
-        private Tree nameTree; //автомат для имен переменных
-
-        private Tree symbolTree; // автомат для символов, например ";", "-", "+", "=" и так далее
+        private List<Tree> allTrees = new List<Tree>(); //список всех автоматов
 
         public Automatic() //при создании экземпляра класса все автоматы считываются с JSON файлов
         {
-            string jsonString = File.ReadAllText(@"..\\..\\..\\Trees\int.json");
-            intTree = JsonSerializer.Deserialize<Tree>(jsonString);
-
-            jsonString = File.ReadAllText(@"..\\..\\..\\Trees\value.json");
-            valueTree = JsonSerializer.Deserialize<Tree>(jsonString);
-
-            jsonString = File.ReadAllText(@"..\\..\\..\\Trees\name.json");
-            nameTree = JsonSerializer.Deserialize<Tree>(jsonString);
-
-            jsonString = File.ReadAllText(@"..\\..\\..\\Trees\symbol.json");
-            symbolTree = JsonSerializer.Deserialize<Tree>(jsonString);
+            string[] files = Directory.GetFiles(@"..\\..\\..\\..\\Trees");
+            foreach (string file in files)
+            {
+                allTrees.Add(JsonSerializer.Deserialize<Tree>(File.ReadAllText(@file)));
+            }
         }
 
         // функции по проверке строчки через автомат
-        public Token IsInt(string input, int start)
+        public Token TryTree(string input, int start, string treeName)
         {
-            return intTree.Try(input, start);
-        }
-
-        public Token IsValue(string input, int start)
-        {
-            return valueTree.Try(input, start);
-        }
-
-        public Token IsName(string input, int start)
-        {
-            return nameTree.Try(input, start);
+            Tree tree = allTrees.Find(x => x.name == treeName);
+            return tree.Try(input, start);
         }
 
         //функция по проверке строчки на все автоматы сразу, возвращает набор пар <название лексемы, сама лексема>
-        public List<KeyValuePair<string, string>> IsCorrect(string input)
+        public List<KeyValuePair<string, string>> TryAllTrees(string input)
         {
             List<KeyValuePair<string, string>> result = new List<KeyValuePair<string, string>>();
-            List<Tree> trees = new List<Tree>() { intTree, valueTree, nameTree, symbolTree };
             int i = 0;
 
             while (i <= input.Length)
@@ -58,14 +36,17 @@ namespace LanguageTask
                 int priority = -1;
                 int maxLength = -1;
                 Tree rightTree = null;
+                Token rightToken = null;
 
-                foreach (Tree tree in trees)
+                foreach (Tree tree in allTrees)
                 {
-                    if (tree.Try(input, i).isGrammar == true && tree.priority >= priority && tree.Try(input, i).lastNumber >= maxLength)
+                    Token temp = tree.Try(input, i);
+                    if (temp.isGrammar == true && tree.priority >= priority && temp.lastNumber >= maxLength)
                     {
                         priority = tree.priority;
-                        maxLength = tree.Try(input, i).lastNumber;
+                        maxLength = temp.lastNumber;
                         rightTree = tree;
+                        rightToken = temp;
                     }
                 }
 
@@ -75,10 +56,9 @@ namespace LanguageTask
                 }
                 else
                 {
-                    Token temp = rightTree.Try(input, i);
-                    string name = input.Substring(i, temp.lastNumber);
+                    string name = input.Substring(i, rightToken.lastNumber);
                     result.Add(new KeyValuePair<string, string>(rightTree.name, name));
-                    i += temp.lastNumber;
+                    i += rightToken.lastNumber;
                 }
             }
 

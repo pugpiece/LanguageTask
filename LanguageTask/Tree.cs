@@ -2,7 +2,7 @@
 
 namespace LanguageTask
 {
-    class Tree
+    public class Tree
     {
         public int Q { get; set; } // сколько состояний q есть у данного автомата
         public string[][] map { get; set; } // "карта" Q на Q, по которой можно понять, из какого состояния
@@ -45,6 +45,7 @@ namespace LanguageTask
                         return token;
                     }
                 }
+
                 if (q == Q - 1)
                 {
                     token.isGrammar = true;

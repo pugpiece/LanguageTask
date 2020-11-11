@@ -11,7 +11,7 @@ namespace LanguageTask
             Console.WriteLine("Введите имя переменной");
             string input = Console.ReadLine();
 
-            Token token = automatic.IsInt(input, 0);
+            Token token = automatic.TryTree(input, 0, "int");
 
             Console.WriteLine("Является ли эта строчка грамматически корректным int значением?");
             Console.WriteLine(token.isGrammar);
@@ -26,7 +26,7 @@ namespace LanguageTask
             Console.WriteLine("Введите входную строку");
             string input = Console.ReadLine();
             Console.WriteLine("Название лексемы - лексема");
-            List<KeyValuePair<string, string>> result = automatic.IsCorrect(input);
+            List<KeyValuePair<string, string>> result = automatic.TryAllTrees(input);
 
             foreach (KeyValuePair<string, string> r in result)
             {
